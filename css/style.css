@@ -6,7 +6,7 @@
 
 @font-face {
     font-family: MyFont;
-    src: url(/fonts/BricolageGrotesque-Light.ttf);
+    src: url(../fonts/BricolageGrotesque-Light.ttf);
 }
 
 body {
