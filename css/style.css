@@ -42,3 +42,41 @@ hr {
     font-weight: bold;
 }
 
+.all-box-calendrie {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+}
+
+.box {
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px;
+    background-color: rgb(241, 196, 99);
+    transition: .4s;
+}
+
+.fa-plus{
+    font-size: 13px;
+    color: rgb(202, 107, 70);
+    cursor: pointer;
+    transition: .3s;
+}
+
+.fa-plus:hover{
+    font-size: 20px;
+    transform: scale(1.09);
+}
+.box:hover {
+    background-color: rgb(87, 55, 13);
+    color: rgb(255, 255, 255);
+}
+
+.copyright{
+    margin: 10px;
+    color: #6e2604;
+}
+
