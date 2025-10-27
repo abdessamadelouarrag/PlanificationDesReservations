@@ -19,7 +19,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 50px;
-    font-size: 60px;
+    font-size: 5rem;
     font-weight: bold;
 }
 
@@ -38,7 +38,7 @@ hr {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     margin-bottom: 1%;
-    font-size: 23px;
+    font-size: 1.6rem;
     font-weight: bold;
 }
 
