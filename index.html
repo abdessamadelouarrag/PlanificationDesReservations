@@ -20,11 +20,14 @@
         </nav>
 
         <section class="Calendar">
+            
+            <div class="image-logo">
+                <img src="/images/logo.png" alt="logo">
+            </div>
 
             <div class="title">
                 <h2>Calendrier</h2>
             </div>
-            <hr>
             <div class="all">
 
                 <div class="days">
@@ -72,10 +75,42 @@
                 </div>
             </div>
 
+            <div class="popup">
+                <div class="model">
+                    <h3>title</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Exercitationem eaque ab facilis animi?</p>
+                    <br>
+                    <div class="inputss">
+                        <label for="name">Name De client</label>
+                        <input type="text">
+    
+                        <label for="full-name">Heure De Debut</label>
+                        <input type="time">
+    
+                        <label for="full-name">Heure De Fin</label>
+                        <input type="time">
+    
+                        <label for="NomberDePersonnes">Nombre De Personnes</label>
+                        <input type="text">
+    
+                        <label for="TypeDeReservation">Type De Reservation</label>
+                        <select name="type">
+                            <option value="VIP">VIP</option>
+                            <option value="ANNIVERSAIRE">ANNIVERSAIRE</option>
+                            <option value="SUR PLACE">SUR PLACE</option>
+                            <option value="MARRIAGE">MARRIAGE</option>
+                        </select>
+                    </div>
+                    <br>
+                    <button class="closed">closed</button>
+                    <button class="btn-add">add</button>
+                </div>
+            </div>
         </section>
     </main>
 
-    <script src="js/script.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 
 </html>
