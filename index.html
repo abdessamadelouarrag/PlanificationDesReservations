@@ -20,13 +20,24 @@
         </nav>
 
         <section class="Calendar">
-            
-            <div class="image-logo">
-                <img src="/images/logo.png" alt="logo">
-            </div>
 
             <div class="title">
                 <h2>Calendrier</h2>
+            </div>
+
+            <div class="iconehelp">
+                <i class="fas fa-hand-holding-medical"></i>
+            </div>
+
+            <div class="all-help">
+                <div class="help">
+                    <h5>Help :</h5>
+                    <br>
+                    <h5 id="vip1">VIP</h5>
+                    <h5 id="surplace1">SUR PLACE</h5>
+                    <h5 id="anniv1">ANNIVERSAIRE</h5>
+                    <i class="fas fa-x closeHelp"></i>
+                </div>
             </div>
             <div class="all">
 
@@ -46,9 +57,9 @@
                     <div class="box">3<i class="fa-solid fa-plus openModel"></i></div>
                     <div class="box">4<i class="fa-solid fa-plus openModel"></i></div>
                     <div class="box">5<i class="fa-solid fa-plus openModel"></i></div>
-                    <div class="box">6<i class="fa-solid fa-plus openModel"></i></div>
-                    <div class="box">7<i class="fa-solid fa-plus openModel"></i></div>
-                    <div class="box">8<i class="fa-solid fa-plus openModel"></i></div>
+                    <div class="box" id="weekend">6</div>
+                    <div class="box" id="weekend">7</div>
+                    <!-- <div class="box">8<i class="fa-solid fa-plus openModel"></i></div>
                     <div class="box">9<i class="fa-solid fa-plus openModel"></i></div>
                     <div class="box">10<i class="fa-solid fa-plus openModel"></i></div>
                     <div class="box">11<i class="fa-solid fa-plus openModel"></i></div>
@@ -71,42 +82,46 @@
                     <div class="box">28<i class="fa-solid fa-plus openModel"></i></div>
                     <div class="box">29<i class="fa-solid fa-plus openModel"></i></div>
                     <div class="box">30<i class="fa-solid fa-plus openModel"></i></div>
-                    <div class="box">31<i class="fa-solid fa-plus openModel"></i></div>
+                    <div class="box">31<i class="fa-solid fa-plus openModel"></i></div> -->
                 </div>
             </div>
 
-            <div class="popup">
-                <div class="model">
-                    <h3>title</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Exercitationem eaque ab facilis animi?</p>
-                    <br>
-                    <div class="inputss">
-                        <label for="name">Name De client</label>
-                        <input type="text">
-    
-                        <label for="full-name">Heure De Debut</label>
-                        <input type="time">
-    
-                        <label for="full-name">Heure De Fin</label>
-                        <input type="time">
-    
-                        <label for="NomberDePersonnes">Nombre De Personnes</label>
-                        <input type="text">
-    
-                        <label for="TypeDeReservation">Type De Reservation</label>
-                        <select name="type">
-                            <option value="VIP">VIP</option>
-                            <option value="ANNIVERSAIRE">ANNIVERSAIRE</option>
-                            <option value="SUR PLACE">SUR PLACE</option>
-                            <option value="MARRIAGE">MARRIAGE</option>
-                        </select>
+            <section class="all-popup">
+
+                <div class="popup">
+                    <div class="model">
+                        <h3>Reservation</h3>
+                        <br>
+                        <div class="inputss">
+                            <form action="">
+                                <label for="name">Name De client</label>
+                                <input type="text" id="name">
+            
+                                <label for="heurededebut">Heure De Debut</label>
+                                <input type="time" id="start">
+            
+                                <label for="heuredefine">Heure De Fin</label>
+                                <input type="time" id="end">
+            
+                                <label for="NomberDePersonnes">Nombre De Personnes</label>
+                                <input type="text" id="num">
+            
+                                <label for="TypeDeReservation">Type De Reservation</label>
+                                <select name="type" id="type">
+                                    <option value="VIP">VIP</option>
+                                    <option value="ANNIVERSAIRE">ANNIVERSAIRE</option>
+                                    <option value="SUR PLACE">SUR PLACE</option>
+                                </select>
+                            </form>
+                        </div>
+                        <br>
+                        <button class="closed">closed</button>
+                        <button class="btn-add" id="add">add</button>
                     </div>
-                    <br>
-                    <button class="closed">closed</button>
-                    <button class="btn-add">add</button>
                 </div>
-            </div>
+
+            </section>
+
         </section>
     </main>
 
