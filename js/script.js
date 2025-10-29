@@ -20,3 +20,20 @@ close.forEach(i => {
     });
 });
 
+
+//pop up help (what is the color ?)
+const openHelp = document.querySelector('.iconehelp');
+const helpBanner = document.querySelector('.help');
+const closeHelp = document.querySelector('.closeHelp');
+
+//open banner help
+openHelp.addEventListener('click', () => {
+    helpBanner.classList.add('showHelp');
+});
+
+
+//close banner help
+closeHelp.addEventListener('click', () => {
+    helpBanner.classList.remove('showHelp');
+})
+
