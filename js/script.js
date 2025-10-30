@@ -14,6 +14,7 @@ open.forEach(i => {
 });
 
 // for close form (model) and remove the class show - back to orignal style of model (opacity 0)
+
 close.forEach(i => {
     i.addEventListener('click', () => {
         popup.classList.remove('show');
@@ -37,3 +38,14 @@ closeHelp.addEventListener('click', () => {
     helpBanner.classList.remove('showHelp');
 })
 
+
+const formReserv = document.getElementsByTagName('form');
+const addReservation = document.getElementById('addR');
+
+
+addReservation.addEventListener('click' ,() => {
+    const valeuREs = formReserv.value;
+    const creEl = document.createElement('div');
+
+    creEl.innerHTML = valeuREs;
+});
