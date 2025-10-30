@@ -3,7 +3,7 @@
 
 //all i need to select model and closed
 const open = document.querySelectorAll('.openModel');
-const popup = document.querySelector('.model')
+const popup = document.querySelector('.all-popup')
 const close = document.querySelectorAll('.closed');
 
 // for open form (model) and add class show for show the form
