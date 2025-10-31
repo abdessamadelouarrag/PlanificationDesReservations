@@ -47,9 +47,7 @@ form.addEventListener('submit', e => {
   };
 
   // get target day
-  const targetSelector = popup.dataset.targetDay ? `.box[data-day="${popup.dataset.targetDay}"]` : '.box.show-task-target';
-
-  const targetDay = document.querySelector(targetSelector) || document.querySelector('.box.clicked');
+  const targetDay = document.querySelector('.box.clicked');
 
 
   // create task
@@ -59,15 +57,22 @@ form.addEventListener('submit', e => {
     <strong>${infoUser.name}</strong><br>
     ${infoUser.start} - ${infoUser.end}<br>
   `;
-  task.addEventListener('click', () => {
-    console.log(`Clicked task ID: ${task.dataset.id}`);
-    alert(`
-    name: ${infoUser.name} 
-    start: ${infoUser.start} 
-    end: ${infoUser.end}
-    persone: ${infoUser.num}
-    type: ${infoUser.type}`);
-  });
+
+  task.addEventListener('dblclick', (e) => {
+  e.stopPropagation();
+  e.currentTarget.remove();
+});
+
+
+  //show info task in alert
+  // task.addEventListener('dblclick', () => {
+  //   alert(`
+  //   name: ${infoUser.name} 
+  //   start: ${infoUser.start} 
+  //   end: ${infoUser.end}
+  //   persone: ${infoUser.num}
+  //   type: ${infoUser.type}`);
+  // });
 
   // color by type
   let color;
@@ -87,6 +92,7 @@ form.addEventListener('submit', e => {
   task.style.padding = '6px';
   task.style.borderRadius = '6px';
   task.style.marginTop = '5px';
+  task.style.fontSize = '14px';
 
   targetDay.appendChild(task);
 
@@ -103,4 +109,7 @@ openButtons.forEach(box => {
     box.classList.add('clicked');
   });
 });
+
+
+//rt
 
