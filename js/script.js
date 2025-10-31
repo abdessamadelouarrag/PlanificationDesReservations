@@ -55,25 +55,95 @@ form.addEventListener('submit', e => {
   // get target day
   const targetDay = document.querySelector('.box.clicked');
 
+  // Check if were editing (look for editing flag)
+  if (popup.dataset.editing === 'true') {
 
-  // create task
-  const task = document.createElement('div');
-  task.className = 'task';
-  task.innerHTML = `
-    <strong>${infoUser.name}</strong><br>
-    ${infoUser.start} - ${infoUser.end}<br>
-    <button id="delet"><i class = "fas fa-trash-can"></i></button>
-    <button id="edit"><i class = "fas fa-pen"></i></button>
-  `;
+    // Find and update the existing task
+    const existingTask = document.querySelector('.task.editing');
+    if (existingTask) {
+      
+      // Update the task content
+      existingTask.innerHTML = `
+        <strong>${infoUser.name}</strong><br>
+        ${infoUser.start} - ${infoUser.end}<br>
+        <button id="delet"><i class = "fas fa-trash-can"></i></button>
+        <button id="edit"><i class = "fas fa-pen"></i></button>
+      `;
 
+      // Re-add event listeners
+      addTaskEventListeners(existingTask, infoUser);
+      
+      // Update color
+      applyTaskColor(existingTask, infoUser.type);
+      
+      // Remove editing class
+      existingTask.classList.remove('editing');
+    }
+    
+    // Clear editing flag
+    delete popup.dataset.editing;
+    
+  } else {
+    // Create new task (your original code)
+    const task = document.createElement('div');
+    task.className = 'task';
+    task.innerHTML = `
+      <strong>${infoUser.name}</strong><br>
+      ${infoUser.start} - ${infoUser.end}<br>
+      <button id="delet"><i class = "fas fa-trash-can"></i></button>
+      <button id="edit"><i class = "fas fa-pen"></i></button>
+    `;
 
+    // Add event listeners
+    addTaskEventListeners(task, infoUser);
 
+    // color by type
+    applyTaskColor(task, infoUser.type);
+
+    // Add styles
+    task.style.color = 'white';
+    task.style.padding = '6px';
+    task.style.borderRadius = '6px';
+    task.style.marginTop = '5px';
+    task.style.fontSize = '14px';
+
+    targetDay.appendChild(task);
+  }
+
+  // reset form and close popup
+  form.reset();
+  popup.classList.remove('show');
+});
+
+// Function to add event listeners to task
+function addTaskEventListeners(task, infoUser) {
+  // delete event
   task.querySelector('#delet').addEventListener('click', (e) => {
     e.stopPropagation();
     e.preventDefault();
     task.remove();
   });
 
+  // edit event - SIMPLIFIED EDIT PART
+  task.querySelector('#edit').addEventListener('click', (e) => {
+    e.stopPropagation();
+    
+    // Fill form with current values
+    document.getElementById('name').value = infoUser.name;
+    document.getElementById('start').value = infoUser.start;
+    document.getElementById('end').value = infoUser.end;
+    document.getElementById('num').value = infoUser.num;
+    document.getElementById('type').value = infoUser.type;
+    
+    // Mark this task as being edited
+    task.classList.add('editing');
+    
+    // Set editing flag
+    popup.dataset.editing = 'true';
+    
+    // Open popup
+    popup.classList.add('show');
+  });
 
   // show info task in alert
   task.addEventListener('click', () => {
@@ -85,50 +155,26 @@ form.addEventListener('submit', e => {
     <strong style="color: black;">Type : </strong> ${infoUser.type} <br>
     <h6 style="color: rgba(163, 42, 12, 1)">Pour revenir à l'état initial, Double cliquez</h6>`);
 
-    // const shoW = document.createElement('div');
-
-    // shoW.className = 'show';
-
-    // shoW.innerHTML = `
-    // name: ${infoUser.name} 
-    // start: ${infoUser.start} 
-    // end: ${infoUser.end}
-    // persone: ${infoUser.num}
-    // type: ${infoUser.type}`;
-
-    // console.log(shoW);
+    // show details of form
     task.addEventListener('dblclick', () => {
       task.innerHTML = `
       <strong>${infoUser.name}</strong><br>
       ${infoUser.start} - ${infoUser.end}<br>
       <button id="delet"><i class = "fas fa-trash-can"></i></button>
       <button id="edit"><i class = "fas fa-pen"></i></button>
-  `;
+      `;
 
-      task.querySelector('#delet').addEventListener('click', (e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        task.remove();
-      });
-    })
+      // Re-add event listeners after double click
+      addTaskEventListeners(task, infoUser);
+      applyTaskColor(task, infoUser.type);
+    }, { once: true }); // Use once to prevent multiple listeners
   });
+}
 
-  const iconeEdit = document.querySelector('#edit');
-
-  openButtons.forEach(iconeEdit => {
-  iconeEdit.addEventListener('click', (e) => {
-
-    if (e.target.classList.contains("openModel"))
-      popup.classList.add('show');
-    else {
-      return;
-    }
-  });
-});
-
-  // color by type
+// Function to apply color
+function applyTaskColor(task, type) {
   let color;
-  switch (infoUser.type) {
+  switch (type) {
     case 'vip':
       color = '#9e7609';
       break;
@@ -137,36 +183,10 @@ form.addEventListener('submit', e => {
       break;
     case 'anniversaire':
       color = '#9b59b6';
+      break;
   }
-
-  task.querySelector('#edit').addEventListener('click', e => {
-  e.stopPropagation();
-
-  document.getElementById('name').value = infoUser.name;
-  document.getElementById('start').value = infoUser.start;
-  document.getElementById('end').value   = infoUser.end;
-  document.getElementById('num').value   = infoUser.num;
-  document.getElementById('type').value  = infoUser.type;
-
-  task.remove();
-  popup.classList.add('show');
-
-});
-
   task.style.backgroundColor = color;
-  task.style.color = 'white';
-  task.style.padding = '6px';
-  task.style.borderRadius = '6px';
-  task.style.marginTop = '5px';
-  task.style.fontSize = '14px';
-
-  targetDay.appendChild(task);
-
-  // reset form and close popup
-  form.reset();
-  popup.classList.remove('show');
-  delete popup.dataset.targetDay;
-});
+}
 
 //BOX CLICK EFFECT
 openButtons.forEach(box => {
@@ -175,4 +195,3 @@ openButtons.forEach(box => {
     box.classList.add('clicked');
   });
 });
-
