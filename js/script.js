@@ -21,16 +21,13 @@ const closeButtons = document.querySelectorAll('.closed');
 // open form popup
 openButtons.forEach(btn => {
   btn.addEventListener('click', (e) => {
-     console.log(e.target);
+    console.log(e.target);
 
-    if(e.target.classList.contains("openModel"))
+    if (e.target.classList.contains("openModel"))
       popup.classList.add('show');
-
-    else{
-      return ;
-      
-     }
-
+    else {
+      return;
+    }
   });
 });
 
@@ -79,14 +76,27 @@ form.addEventListener('submit', e => {
 
 
   // show info task in alert
-  // task.addEventListener('click', () => {
-  //   alert(`
-  //   name: ${infoUser.name} 
-  //   start: ${infoUser.start} 
-  //   end: ${infoUser.end}
-  //   persone: ${infoUser.num}
-  //   type: ${infoUser.type}`);
-  // });
+  task.addEventListener('click', () => {
+    task.innerHTML = (`
+    <strong>Name : </strong> ${infoUser.name}
+    
+    start: ${infoUser.start}
+    end: ${infoUser.end}
+    persone: ${infoUser.num} - type: ${infoUser.type}`);
+
+    // const shoW = document.createElement('div');
+
+    // shoW.className = 'show';
+
+    // shoW.innerHTML = `
+    // name: ${infoUser.name} 
+    // start: ${infoUser.start} 
+    // end: ${infoUser.end}
+    // persone: ${infoUser.num}
+    // type: ${infoUser.type}`;
+
+    // console.log(shoW);
+  });
 
   // color by type
   let color;
@@ -123,7 +133,4 @@ openButtons.forEach(box => {
     box.classList.add('clicked');
   });
 });
-
-
-//rt
 

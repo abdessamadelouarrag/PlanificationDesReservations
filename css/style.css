@@ -167,6 +167,7 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 10%;
 }
 
 form {
@@ -280,6 +281,11 @@ select {
         text-align: center;
         font-size: 2.4em;
     }
+    .help{
+        font-size: 8px;
+        width: 200px;
+        gap: 8px;
+    }
 }
 
 #delet{
@@ -289,6 +295,7 @@ select {
     border-radius: 8px;
     cursor: pointer;
     color: rgb(250, 250, 250);
+    margin: 3px;
 }
 
 #edit{
@@ -297,6 +304,7 @@ select {
     border-radius: 8px;
     cursor: pointer;
     color: rgb(15, 117, 1);
+    margin: 3px;
 }
 
 .task{
