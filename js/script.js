@@ -78,11 +78,11 @@ form.addEventListener('submit', e => {
   // show info task in alert
   task.addEventListener('click', () => {
     task.innerHTML = (`
-    <strong>Name : </strong> ${infoUser.name}
-    
-    start: ${infoUser.start}
-    end: ${infoUser.end}
-    persone: ${infoUser.num} - type: ${infoUser.type}`);
+    <strong style="color: black;">Name : </strong> ${infoUser.name}
+    <strong style="color: black;">Start : </strong> ${infoUser.start}
+    <strong style="color: black;">End : </strong>${infoUser.end}
+    <strong style="color: black;">Person : </strong>${infoUser.num}
+    <strong style="color: black;">Type : </strong> ${infoUser.type}`);
 
     // const shoW = document.createElement('div');
 
