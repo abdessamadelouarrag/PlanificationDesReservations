@@ -47,17 +47,10 @@ form.addEventListener('submit', e => {
   };
 
   // get target day
-  const targetSelector = popup.dataset.targetDay
-    ? `.box[data-day="${popup.dataset.targetDay}"]`
-    : '.box.show-task-target';
+  const targetSelector = popup.dataset.targetDay ? `.box[data-day="${popup.dataset.targetDay}"]` : '.box.show-task-target';
 
-  const targetDay = document.querySelector(targetSelector)
-    || document.querySelector('.box.clicked');
+  const targetDay = document.querySelector(targetSelector) || document.querySelector('.box.clicked');
 
-  if (!targetDay) {
-    console.error('Could not find the day to add the task to.');
-    return;
-  }
 
   // create task
   const task = document.createElement('div');
@@ -66,6 +59,12 @@ form.addEventListener('submit', e => {
     <strong>${infoUser.name}</strong><br>
     ${infoUser.start} - ${infoUser.end}<br>
   `;
+  task.addEventListener('click', () => {
+    console.log(`Clicked task ID: ${task.dataset.id}`);
+    alert(`name: ${infoUser.name} 
+      start: ${infoUser.start}
+      end: ${infoUser.end}`);
+  });
 
   // color by type
   let color;
@@ -78,7 +77,6 @@ form.addEventListener('submit', e => {
       break;
     case 'anniversaire':
       color = '#9b59b6';
-
   }
 
   task.style.backgroundColor = color;
@@ -102,3 +100,4 @@ openButtons.forEach(box => {
     box.classList.add('clicked');
   });
 });
+

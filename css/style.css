@@ -105,14 +105,14 @@ body {
 }
 
 .box {
-    /* display: flex;
-    justify-content: space-between; */
     height: 13em;
     border-radius: 5px;
     padding: 10px;
     font-size: 20px;
     background-color: #fff4d6;
     transition: .4s;
+    overflow: scroll;
+    scrollbar-width: none;
 }
 
 #image11{
@@ -274,5 +274,10 @@ select {
     .days{
         display: grid;
         grid-template-columns: 1fr;
+    }
+
+    .title{
+        text-align: center;
+        font-size: 2.4em;
     }
 }
