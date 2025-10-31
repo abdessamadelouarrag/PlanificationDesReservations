@@ -78,11 +78,12 @@ form.addEventListener('submit', e => {
   // show info task in alert
   task.addEventListener('click', () => {
     task.innerHTML = (`
-    <strong style="color: black;">Name : </strong> ${infoUser.name}
-    <strong style="color: black;">Start : </strong> ${infoUser.start}
-    <strong style="color: black;">End : </strong>${infoUser.end}
-    <strong style="color: black;">Person : </strong>${infoUser.num}
-    <strong style="color: black;">Type : </strong> ${infoUser.type}`);
+    <strong style="color: black;">Name : </strong> ${infoUser.name} <br>
+    <strong style="color: black;">Start : </strong> ${infoUser.start}<br>
+    <strong style="color: black;">End : </strong>${infoUser.end}<br>
+    <strong style="color: black;">Person : </strong>${infoUser.num}<br>
+    <strong style="color: black;">Type : </strong> ${infoUser.type} <br>
+    <h6 style="color: rgba(163, 42, 12, 1)">Pour revenir à l'état initial, Double cliquez</h6>`);
 
     // const shoW = document.createElement('div');
 
@@ -96,7 +97,34 @@ form.addEventListener('submit', e => {
     // type: ${infoUser.type}`;
 
     // console.log(shoW);
+    task.addEventListener('dblclick', () => {
+      task.innerHTML = `
+      <strong>${infoUser.name}</strong><br>
+      ${infoUser.start} - ${infoUser.end}<br>
+      <button id="delet"><i class = "fas fa-trash-can"></i></button>
+      <button id="edit"><i class = "fas fa-pen"></i></button>
+  `;
+
+      task.querySelector('#delet').addEventListener('click', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        task.remove();
+      });
+    })
   });
+
+  const iconeEdit = document.querySelector('#edit');
+
+  openButtons.forEach(iconeEdit => {
+  iconeEdit.addEventListener('click', (e) => {
+
+    if (e.target.classList.contains("openModel"))
+      popup.classList.add('show');
+    else {
+      return;
+    }
+  });
+});
 
   // color by type
   let color;
@@ -110,6 +138,20 @@ form.addEventListener('submit', e => {
     case 'anniversaire':
       color = '#9b59b6';
   }
+
+  task.querySelector('#edit').addEventListener('click', e => {
+  e.stopPropagation();
+
+  document.getElementById('name').value = infoUser.name;
+  document.getElementById('start').value = infoUser.start;
+  document.getElementById('end').value   = infoUser.end;
+  document.getElementById('num').value   = infoUser.num;
+  document.getElementById('type').value  = infoUser.type;
+
+  task.remove();
+  popup.classList.add('show');
+
+});
 
   task.style.backgroundColor = color;
   task.style.color = 'white';
