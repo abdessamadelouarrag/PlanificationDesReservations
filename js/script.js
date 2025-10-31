@@ -20,8 +20,17 @@ const closeButtons = document.querySelectorAll('.closed');
 
 // open form popup
 openButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    popup.classList.add('show');
+  btn.addEventListener('click', (e) => {
+     console.log(e.target);
+
+    if(e.target.classList.contains("openModel"))
+      popup.classList.add('show');
+
+    else{
+      return ;
+      
+     }
+
   });
 });
 
@@ -43,7 +52,7 @@ form.addEventListener('submit', e => {
     start: document.getElementById('start').value,
     end: document.getElementById('end').value,
     num: document.getElementById('num').value,
-    type: document.getElementById('type').value.trim().toLowerCase(),
+    type: document.getElementById('type').value.toLowerCase(),
   };
 
   // get target day
@@ -56,16 +65,21 @@ form.addEventListener('submit', e => {
   task.innerHTML = `
     <strong>${infoUser.name}</strong><br>
     ${infoUser.start} - ${infoUser.end}<br>
+    <button id="delet"><i class = "fas fa-trash-can"></i></button>
+    <button id="edit"><i class = "fas fa-pen"></i></button>
   `;
 
-  task.addEventListener('dblclick', (e) => {
-  e.stopPropagation();
-  e.currentTarget.remove();
-});
 
 
-  //show info task in alert
-  // task.addEventListener('dblclick', () => {
+  task.querySelector('#delet').addEventListener('click', (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    task.remove();
+  });
+
+
+  // show info task in alert
+  // task.addEventListener('click', () => {
   //   alert(`
   //   name: ${infoUser.name} 
   //   start: ${infoUser.start} 
@@ -78,10 +92,10 @@ form.addEventListener('submit', e => {
   let color;
   switch (infoUser.type) {
     case 'vip':
-      color = '#d4af37';
+      color = '#9e7609';
       break;
     case 'sur-place':
-      color = '#eb6e1bff';
+      color = '#35a4b3ff';
       break;
     case 'anniversaire':
       color = '#9b59b6';
