@@ -61,9 +61,12 @@ form.addEventListener('submit', e => {
   `;
   task.addEventListener('click', () => {
     console.log(`Clicked task ID: ${task.dataset.id}`);
-    alert(`name: ${infoUser.name} 
-      start: ${infoUser.start}
-      end: ${infoUser.end}`);
+    alert(`
+    name: ${infoUser.name} 
+    start: ${infoUser.start} 
+    end: ${infoUser.end}
+    persone: ${infoUser.num}
+    type: ${infoUser.type}`);
   });
 
   // color by type
