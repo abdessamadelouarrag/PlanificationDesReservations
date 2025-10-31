@@ -123,6 +123,7 @@ html {
 #weekend {
     background-color: #dbc9a6;
     opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .fa-plus {
@@ -180,7 +181,6 @@ form {
     padding: 20px;
     border-radius: 20px;
     width: 30vw;
-    height: auto;
     box-shadow: rgba(236, 223, 104, 0.4) 5px 5px, rgba(228, 161, 61, 0.3) 10px 10px, rgba(233, 166, 78, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
     transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease;
@@ -297,4 +297,8 @@ select {
     border-radius: 8px;
     cursor: pointer;
     color: rgb(15, 117, 1);
+}
+
+.task{
+    cursor: pointer;
 }
