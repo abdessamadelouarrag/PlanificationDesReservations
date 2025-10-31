@@ -1,151 +1,104 @@
-
-//code js for pop up form
-
-//all i need to select model and closed
-const open = document.querySelectorAll('.openModel');
-const popup = document.querySelector('.all-popup')
-const close = document.querySelectorAll('.closed');
-const cards =document.querySelectorAll(".box")
-
-
-
-
-
-
-
-
-
-// for open form (model) and add class show for show the form
-// open.forEach(i => {
-//     i.addEventListener('click', (e) => {
-//         popup.classList.add('show');
-
-//     });
-// });
-
-// for close form (model) and remove the class show - back to orignal style of model (opacity 0)
-
-close.forEach(i => {
-    i.addEventListener('click', () => {
-        popup.classList.remove('show');
-    });
-});
-
-
-//pop up help (what is the color ?)
+// HELP POPUP
 const openHelp = document.querySelector('.iconehelp');
 const helpBanner = document.querySelector('.help');
 const closeHelp = document.querySelector('.closeHelp');
 
-//open banner help
+// open help
 openHelp.addEventListener('click', () => {
-    helpBanner.classList.add('showHelp');
+  helpBanner.classList.add('showHelp');
 });
 
-
-//close banner help
+// close help
 closeHelp.addEventListener('click', () => {
-    helpBanner.classList.remove('showHelp');
-})
+  helpBanner.classList.remove('showHelp');
+});
 
+// FORM POPUP
+const openButtons = document.querySelectorAll('.box');
+const popup = document.querySelector('.all-popup');
+const closeButtons = document.querySelectorAll('.closed');
 
-const reS = document.getElementsByClassName('box');
-const addReservation = document.getElementById('addR');
+// open form popup
+openButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    popup.classList.add('show');
+  });
+});
 
+// close form popup
+closeButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    popup.classList.remove('show');
+  });
+});
 
-// addReservation.addEventListener('click' ,() => {
-//     const valeuREs = inputName.value;
-//     reS.innerHTML = `<div>${valeuREs}</div>`;
-// });
+// FORM SUBMIT
+const form = document.getElementById('formSub');
 
-// const reServ = document.getElementById('name').value;
-
-const formInput = document.getElementById('formSub');
-
-function addInDays(infoUser) {
-    const allDays = document.getElementsByClassName('box');
-   
-    const cDiv = document.createElement('div');
-  cDiv.innerHTML = `<h4>${infoUser.Name}</h4> <p>${infoUser.start} ${infoUser.end} </p>`;
-  document.querySelector('.box').append(cDiv);
-}
-
-formInput.addEventListener('submit', function (e) {
+form.addEventListener('submit', e => {
   e.preventDefault();
 
   const infoUser = {
-    Name: document.getElementById('name').value,
+    name: document.getElementById('name').value.trim(),
     start: document.getElementById('start').value,
     end: document.getElementById('end').value,
     num: document.getElementById('num').value,
-    type: document.getElementById('type').value,
+    type: document.getElementById('type').value.trim().toLowerCase(),
   };
 
-//   addInDays(infoUser);
+  // get target day
+  const targetSelector = popup.dataset.targetDay
+    ? `.box[data-day="${popup.dataset.targetDay}"]`
+    : '.box.show-task-target';
 
+  const targetDay = document.querySelector(targetSelector)
+    || document.querySelector('.box.clicked');
+
+  if (!targetDay) {
+    console.error('Could not find the day to add the task to.');
+    return;
+  }
+
+  // create task
+  const task = document.createElement('div');
+  task.className = 'task';
+  task.innerHTML = `
+    <strong>${infoUser.name}</strong><br>
+    ${infoUser.start} - ${infoUser.end}<br>
+  `;
+
+  // color by type
+  let color;
+  switch (infoUser.type) {
+    case 'vip':
+      color = '#d4af37';
+      break;
+    case 'sur-place':
+      color = '#eb6e1bff';
+      break;
+    case 'anniversaire':
+      color = '#9b59b6';
+
+  }
+
+  task.style.backgroundColor = color;
+  task.style.color = 'white';
+  task.style.padding = '6px';
+  task.style.borderRadius = '6px';
+  task.style.marginTop = '5px';
+
+  targetDay.appendChild(task);
+
+  // reset form and close popup
+  form.reset();
   popup.classList.remove('show');
-//   console.log(infoUser);
-
-
+  delete popup.dataset.targetDay;
 });
 
-
-
-
-// show popop in card
-
-
-let name = document.getElementById('name');
-
-
-  let infoUser = {
-    Name: name.value
-    // start: document.getElementById('start').value,
-    // end: document.getElementById('end').value,
-    // num: document.getElementById('num').value,
-    // type: document.getElementById('type').value,
-  };
-
-
-
-  cards.forEach(card =>{
-    
-    
-    card.addEventListener("click" , (e)=>{
-        
-        
-        
-        if(e.target.classList.contains("week")){
-            return ;
-        }
-        
-        popup.classList.add("show");
-
-
-       
-        
-     
-      document.getElementById("addR").addEventListener("click" , ()=>{
-         
-       
-        let info = `<p>${name.value}</p>`
-
-
-
-
-        card.innerHTML += info
-
-
-
-        
-        
-    
-      })
-        
-     
-      
-
-        
-        
-    })
-})
+//BOX CLICK EFFECT
+openButtons.forEach(box => {
+  box.addEventListener('click', () => {
+    document.querySelectorAll('.box').forEach(b => b.classList.remove('clicked'));
+    box.classList.add('clicked');
+  });
+});

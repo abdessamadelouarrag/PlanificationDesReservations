@@ -15,9 +15,9 @@ body {
     height: 100%;
 }
 
-html {
+/* html {
     overflow: hidden;
-}
+} */
 
 .title {
     display: flex;
@@ -263,4 +263,16 @@ select {
     margin: 5px;
     cursor: pointer;
     font-size: 14px;
+}
+
+@media (max-width : 888px) {
+    .all-box-calendrie{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .days{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
 }
